@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Labos DEI</title>
+	<link rel="stylesheet" href="/stylesheets/style.css">
+	<link rel="stylesheet" href="/stylesheets/reserva.css">
+</head>
+<body>
+	<header class="full-width NavBarP">
+		<div class="full-width NavBarP-Logo">DEI UCA</div>
+		<nav class="full-width NavBarP-Nav">
+			<ul class="full-width list-unstyled">
+				<li><a href="main.html">Inicio</a></li>
+				<li>
+					<a href="#!" class="btn-login"><i class="fa fa-user" aria-hidden="true"></i>Log In</a>
+					<div class="full-width Login">
+						<p class="text-center">
+							<form action="">
+								<div class="form-group">
+									<label for="email"><i class="fa fa-envelope" aria-hidden="true"></i>E-mail</label>
+									<input type="text" class="form-control" name="email" id="email_field">
+								</div>
+								<div class="form-group">
+									<label for="password"><i class="fa fa-lock"
+											aria-hidden="true"></i>Contraseña</label>
+									<input type="password" class="form-control" name="password" id="password_field">
+								</div>
+								<p class="text-center">
+									<a href="#!" class="btn btn-danger btn-login"
+										style="display:inline-block !important;">CANCELAR</a>
+									<button type="submit" class="btn btn-primary" id="login_btn">INICIAR SESIÓN</button>
+								</p>
+							</form>
+							<hr>
+							<p class="text-center">¿Aún no tienes cuenta?</p>
+							<a href="#!">CRÉATE UNA GRATIS</a>
+						</p>
+					</div>
+				</li>
+			</ul>
+		</nav>
+		<i class="fa fa-bars visible-xs btn-menuMobile ShowMenuMobile" aria-hidden="true"></i>
+	</header>
+	<section class="banner">
+		<div class="banner-content">
+			<h1>Laboratorios DEI UCA</h1>
+			<div class="agile-its">
+				<h2>Cree un usuario</h2>
+				<div class="w3layouts">
+					<div class="photos-upload-view">
+						<form action="#" method="POST">
+							<div class="agileinfo">
+								<div class="agileinfo-row">
+									<div class="ferry ferry-from">
+										<label>Nombre</label>
+										<input type="text" name="Name" id="name_field" placeholder="" required="">
+									</div>
+									<div class="ferry ferry-from">
+										<label>Correo</label>
+										<input type="email" name="email" id="mail_field" placeholder="" required="">
+									</div>
+									<div class="ferry ferry-from">
+										<label>Contraseña</label>
+										<input type="password" name="contra" id="pass_field" placeholder="" required="">
+									</div>
+									<div class="ferry ferry-from">
+										<label>Confirme su contraseña</label>
+										<input type="password" name="contra" id="checkpass_field" placeholder=""
+											required="">
+									</div>
+									<div class="wthreesubmitaits">
+										<input type="submit" name="submit" value="Crear" id="submit_btn">
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</section>
+	<script src="js/jquery-3.1.0.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/create_account.js"></script>
+	<script src="js/login.js"></script>
+</body>
+</html>
