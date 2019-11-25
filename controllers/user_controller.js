@@ -126,14 +126,14 @@ module.exports = {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 var User = require('../models/user');
-var debug = require('debug')('blog:user_controller');
+var debug = require('debug')('proyectowebv2:user_controller');
 
 // Search a one user y database
 module.exports.getOne = (req, res, next) => {
     debug("Search User", req.params);
     User.findOne({
-            username: req.params.username
-        }, "-password -login_count")
+            name: req.params.name
+        }, "-password")
         .then((foundUser) => {
             debug("Found User", foundUser);
             if (foundUser)
@@ -160,7 +160,7 @@ module.exports.getAll = (req, res, next) => {
         sort
     });
 
-    User.find({}, "-password -login_count")
+    User.find({}, "-password")
         .limit(perPage)
         .skip(perPage * page)
         .sort({
@@ -182,15 +182,15 @@ module.exports.register = (req, res, next) => {
         body: req.body
     });
     User.findOne({
-            username: req.body.username
-        }, "-password -login_count")
+            name: req.body.name
+        }, "-password")
         .then((foundUser) => {
             if (foundUser) {
                 debug("Usuario duplicado");
-                throw new Error(`Usuario duplicado ${req.body.username}`);
+                throw new Error(`Usuario duplicado ${req.body.name}`);
             } else {
                 let newUser = new User({
-                    username: req.body.username,
+                    name: req.body.name,
                     first_name: req.body.firts_name || "",
                     last_name: req.body.last_name || "",
                     email: req.body.email,
@@ -200,10 +200,10 @@ module.exports.register = (req, res, next) => {
             }
         }).then(user => {
             return res
-                .header('Location', '/users/' + user.username)
+                .header('Location', '/users/' + user.name)
                 .status(201)
                 .json({
-                    username: user.username
+                    name: user.name
                 });
         }).catch(err => {
             next(err);
@@ -215,7 +215,7 @@ module.exports.register = (req, res, next) => {
 
 module.exports.update = (req, res, next) => {
     debug("Update user", {
-        username: req.params.username,
+        name: req.params.name,
         ...req.body
     });
 
@@ -224,7 +224,7 @@ module.exports.update = (req, res, next) => {
     };
 
     User.findOneAndUpdate({
-            username: req.params.username
+            name: req.params.name
         }, update, {
             new: true
         })
@@ -241,10 +241,10 @@ module.exports.update = (req, res, next) => {
 module.exports.delete = (req, res, next) => {
 
     debug("Delete user", {
-        username: req.params.username,
+        name: req.params.name,
     });
 
-    User.findOneAndDelete({username: req.params.username})
+    User.findOneAndDelete({name: req.params.name})
     .then((data) =>{
         if (data) res.status(200).json(data);
         else res.status(404).send();

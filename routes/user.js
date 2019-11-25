@@ -4,14 +4,12 @@ const UserController = require("../controllers/user_controller.js");
 
 
 router.get('/all', UserController.getAll);
-router.get('/:id', UserController.getOneById);
+router.get('/:name', UserController.getOneById);
 
 router.post('/', UserController.insert);
 
-router.put('/:id', UserController.update);
+router.put('/:name', UserController.update);
 
-router.delete('/:id', UserController.deleteById);
-
-router.get('/panic/all',UserController.panic);
+router.delete('/:name', UserController.deleteById);
 
 module.exports = router;

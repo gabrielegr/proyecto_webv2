@@ -5,14 +5,16 @@ $(document).ready(function () {
 	let login_btn = document.querySelector("#login_btn")
 	login_btn.addEventListener("click", (e) => {
 		e.preventDefault()		
-		let email = name_field.value
+		let name = name_field.value
 		let password = password_field.value
-		if(email == "" || password == ""){
+		if(name == "" || password == ""){
 			alert("Por favor llene todos los campos")
 		}
 		else {
 			if (true) {
-				location.href = "/login";
+                
+
+				location.href = "/login/:"+name;
 			}
 			else {
 				alert("Usuario o Contraseña incorrectos")

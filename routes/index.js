@@ -9,7 +9,7 @@ router.get('/solicitud', function(req, res, next) {
   res.render('solicitud', { title: 'Reservar laboratorio' });
 });
 
-router.get('/login', function(req, res, next) {
+router.get('/login/', function(req, res, next) {
   res.render('login', { title: 'Reservar laboratorio' });
 });
 

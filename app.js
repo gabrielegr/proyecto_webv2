@@ -1,12 +1,16 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
+var cookie = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var debug = require('debug')('proyectowebv2:database');
-var indexRouter = require('./routes/index');
-
+var indexRouter = require('./routes/index')(app,passport);
+var passport=require('passport')
+var morgan=require('morgan')
+var flash=require('connect-flash')
+var bodyParser=require('body-parser')
+var session=require('express-session')
 
 
 mongoose.connect(process.env.MONGO_URI, {
@@ -29,11 +33,17 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
+app.use(morgan('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(session({secret:'uwu',
+resave:false,
+saveUninitialized:false
+}))
+app.use(passport.session())
+app.use(flash())
 app.use('/', indexRouter);
 
 
