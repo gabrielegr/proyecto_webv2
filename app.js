@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 var debug = require('debug')('proyectowebv2:database');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var registroRouter = require('./routes/registro');
+
 
 mongoose.connect(process.env.MONGO_URI, {
   useCreateIndex: true,
@@ -36,8 +36,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/registro', registroRouter);
-
 //static files
 app.use('/public', express.static(path.join(__dirname, 'public')));
 // catch 404 and forward to error handler
