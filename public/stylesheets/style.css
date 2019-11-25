@@ -188,34 +188,34 @@ html, body{
 }
 @keyframes banner{
 	0%{
-		background-image: url('../assets/img/banner-1.jpg');
+		background-image: url('../images/banner-1.jpg');
 	}
 	25%{
-		background-image: url('../assets/img/banner-1.jpg');
+		background-image: url('../images/banner-1.jpg');
 	}
 
 
 	26%{
-		background-image: url('../assets/img/banner-2.jpg');
+		background-image: url('../images/banner-2.jpg');
 	}
 	50%{
-		background-image: url('../assets/img/banner-2.jpg');
+		background-image: url('../images/banner-2.jpg');
 	}
 
 
 	51%{
-		background-image: url('../assets/img/banner-3.jpg');
+		background-image: url('../images/banner-3.jpg');
 	}
 	75%{
-		background-image: url('../assets/img/banner-3.jpg');
+		background-image: url('../images/banner-3.jpg');
 	}
 	
 
 	76%{
-		background-image: url('../assets/img/banner-4.jpg');
+		background-image: url('../images/banner-4.jpg');
 	}
 	100%{
-		background-image: url('../assets/img/banner-4.jpg');
+		background-image: url('../images/banner-4.jpg');
 	}
 
 }
