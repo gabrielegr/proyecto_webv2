@@ -1,20 +1,6 @@
 const User = require("../models/user.js")
 
-/**
- * METHOD = POST
- * BODY:{
- *      carnet:String,
- *      schedule: String,
- *      isLate: Boolean,
- *      datetime: Date
- * }
- */
 const insert = (req, res)=>{
-    /**
-     * Para ver el funcionamiento de req.body hacer:
-     * console.log(req.body);
-     */
-
     if(!req.body.nombre || !req.body.contraseña){
         return res.status(400).json({
             message: "There are missing fields",
@@ -36,22 +22,8 @@ const insert = (req, res)=>{
         });
     })
 }
-
-/**
- * METHOD = PUT
- * BODY:{
- *      _id: mongoose.Schema.Types.ObjectId
- *      carnet:String,
- *      schedule: String,
- *      isLate: Boolean,
- *      datetime: Date
- * }
- */
 const update = (req, res)=>{
     let user = req.body
-    
-    //console.log(register._id);
-    
 
     if(!user._id){
         return res.status(400).json({

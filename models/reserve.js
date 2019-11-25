@@ -34,6 +34,8 @@ var ReserveSchema = Schema({
     descripcion: String,
 
     frecuencia: String,
+
+    materia: String,
 });
 
 module.exports = mongoose.model("Reserve", ReserveSchema);

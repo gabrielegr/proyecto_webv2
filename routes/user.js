@@ -6,7 +6,6 @@ const UserController = require("../controllers/user_controller.js");
 
 router.get('/', UserController.getAll);
 router.get('/:id', UserController.getOneById);
-
 router.post('/', UserController.insert);
 
 router.put('/', UserController.update);
