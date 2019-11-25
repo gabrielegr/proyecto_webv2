@@ -29,10 +29,10 @@ $(document).ready(function () {
 	});
 	//Redirección a Crear Cuenta
 	$('.create-account').on('click', function (e) {
-		location.href = "registro.html";
+		location.href = "/registro";
 	});
 	//Log Out
 	$('.btn.btn-danger.btn-login').on('click', function (e) {
-		location.href = "main.html";
+		location.href = "/";
 	});
 });
