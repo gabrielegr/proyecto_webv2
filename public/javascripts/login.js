@@ -14,7 +14,7 @@ $(document).ready(function () {
 			if (true) {
                 
 
-				location.href = "/login/:"+name;
+				location.href = "/perfil";
 			}
 			else {
 				alert("Usuario o Contraseña incorrectos")
