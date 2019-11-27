@@ -325,8 +325,3 @@ html, body{
 		margin-right: -2px;
 	}
 }
-
-@media (min-width: 750px) {
-	.shrink-mobile{
-		width: 100%;}
-	}
