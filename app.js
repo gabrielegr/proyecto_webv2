@@ -17,18 +17,7 @@ var bodyParser=require('body-parser');
 var options = {};
 
 
-mongoose.connect(process.env.MONGO_URI, {
-  useCreateIndex: true,
-  useNewUrlParser: true,
-  useUnifiedTopology: true 
-  })
-  .then(() => {
-    debug("success Connected to database")
-  })
-  .catch((err) => {
-    debug(err);
-    process.exit(1);
-  });
+
 
 var app = express();
 
@@ -42,10 +31,23 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookie());
 app.use(express.static(path.join(__dirname, 'public')));
- 
-app.use(session({
-    secret: 'foo',
-    store: new MongoStore(options)
+
+app.use(expressSession({
+  store: new mongoStore({
+      mongooseConnection: mongoose.connect(process.env.MONGO_URI, {
+        useCreateIndex: true,
+        useNewUrlParser: true,
+        useUnifiedTopology: true 
+        })
+        .then(() => {
+          debug("success Connected to database")
+        })
+        .catch((err) => {
+          debug(err);
+          process.exit(1);
+        });,
+      collection: 'session',
+  })
 }));
 app.use(flash())
 app.use('/', indexRouter);
