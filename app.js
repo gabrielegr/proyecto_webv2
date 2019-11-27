@@ -32,7 +32,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookie());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(expressSession({
+app.use(session({
   store: new mongoStore({
       mongooseConnection: mongoose.connect(process.env.MONGO_URI, {
         useCreateIndex: true,
