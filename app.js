@@ -14,7 +14,7 @@ var reserveRouter = require('./routes/reserve');
 var morgan=require('morgan');
 var flash=require('connect-flash');
 var bodyParser=require('body-parser');
-
+var options = {};
 
 
 mongoose.connect(process.env.MONGO_URI, {
