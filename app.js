@@ -5,16 +5,16 @@ var cookie = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var debug = require('debug')('proyectowebv2:database');
+var session=require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/user');
 var superviseRouter = require('./routes/supervise');
 var reserveRouter = require('./routes/reserve');
+var morgan=require('morgan');
+var flash=require('connect-flash');
+var bodyParser=require('body-parser');
 
-var morgan=require('morgan')
-var flash=require('connect-flash')
-var bodyParser=require('body-parser')
-var session=require('express-session')
 
 
 mongoose.connect(process.env.MONGO_URI, {
