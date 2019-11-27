@@ -293,6 +293,8 @@ html, body{
 
 /*col-sm col-md col-lg*/
 @media (min-width: 768px) {
+	
+
 	.Login{
 		border: 1px solid #E1E1E1;
 		position: absolute;
@@ -324,3 +326,7 @@ html, body{
 	}
 }
 
+@media (min-width: 750px) {
+	.shrink-mobile{
+		width: 100%;}
+	}

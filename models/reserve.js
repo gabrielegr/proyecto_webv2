@@ -13,12 +13,12 @@ var ReserveSchema = Schema({
     },
 
     horai: {
-        type: Timestamp,
+        type: String,
         required: true
     },
 
     horaf: {
-        type: Timestamp,
+        type: String,
         required: true
     },
     
@@ -27,7 +27,7 @@ var ReserveSchema = Schema({
         required: true
     },
 
-    cantidad:BigInt,
+    cantidad:Number,
 
     estado: Boolean,
 

@@ -18,7 +18,7 @@ var SuperviseSchema = Schema({
     },  
 
     laboratorio:{
-        type: BigInt,
+        type: Number,
         required: true,
     },
 
