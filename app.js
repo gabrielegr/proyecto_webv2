@@ -6,7 +6,7 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 var debug = require('debug')('proyectowebv2:database');
 var indexRouter = require('./routes/index');
-var passport=require('passport')
+
 var morgan=require('morgan')
 var flash=require('connect-flash')
 var bodyParser=require('body-parser')
@@ -42,7 +42,6 @@ app.use(session({secret:'uwu',
 resave:false,
 saveUninitialized:false
 }))
-app.use(passport.session())
 app.use(flash())
 app.use('/', indexRouter);
 
