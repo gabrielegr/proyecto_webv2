@@ -5,6 +5,7 @@ var cookie = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var debug = require('debug')('proyectowebv2:database');
+var MongoStore = require('connect-mongo')(session);
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/user');
 var superviseRouter = require('./routes/supervise');
@@ -41,10 +42,11 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookie());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({secret:'uwu',
-resave:false,
-saveUninitialized:false
-}))
+ 
+app.use(session({
+    secret: 'foo',
+    store: new MongoStore(options)
+}));
 app.use(flash())
 app.use('/', indexRouter);
 
