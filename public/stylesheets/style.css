@@ -152,7 +152,7 @@ html, body{
 	background-size: cover;
 	background-position: center;
 	transition: all .1s ease-out;
-	background-image: url('../assets/img/banner-1.jpg');
+	background-image: url('../imgages/banner-1.jpg');
 	animation: banner 28s infinite linear;
 }
 .banner-content{

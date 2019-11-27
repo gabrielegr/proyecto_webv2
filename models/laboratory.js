@@ -3,12 +3,12 @@ const mongoose = require('mongoose'),
 
 var LaboSchema = Schema({
     Numero: {
-        type: BigInt,
+        type: Number,
         required: true,
     },
   
     puestos: {
-        type: BigInt,
+        type: Number,
         required: true
     },  
 });

@@ -314,85 +314,85 @@
 
 !(function () {
   var data = [{
-      eventName: "Lunch Meeting w/ Mark",
+      eventName: "",
       calendar: "Work",
       color: "orange"
     },
     {
-      eventName: "Interview - Jr. Web Developer",
+      eventName: "",
       calendar: "Work",
       color: "orange"
     },
     {
-      eventName: "Demo New App to the Board",
+      eventName: "",
       calendar: "Work",
       color: "orange"
     },
     {
-      eventName: "Dinner w/ Marketing",
+      eventName: "",
       calendar: "Work",
       color: "orange"
     },
 
     {
-      eventName: "Game vs Portalnd",
+      eventName: "",
       calendar: "Sports",
       color: "blue"
     },
     {
-      eventName: "Game vs Houston",
+      eventName: "",
       calendar: "Sports",
       color: "blue"
     },
     {
-      eventName: "Game vs Denver",
+      eventName: "",
       calendar: "Sports",
       color: "blue"
     },
     {
-      eventName: "Game vs San Degio",
+      eventName: "",
       calendar: "Sports",
       color: "blue"
     },
 
     {
-      eventName: "School Play",
+      eventName: "",
       calendar: "Kids",
       color: "yellow"
     },
     {
-      eventName: "Parent/Teacher Conference",
+      eventName: "",
       calendar: "Kids",
       color: "yellow"
     },
     {
-      eventName: "Pick up from Soccer Practice",
+      eventName: "",
       calendar: "Kids",
       color: "yellow"
     },
     {
-      eventName: "Ice Cream Night",
+      eventName: "",
       calendar: "Kids",
       color: "yellow"
     },
 
     {
-      eventName: "Free Tamale Night",
+      eventName: "",
       calendar: "Other",
       color: "green"
     },
     {
-      eventName: "Bowling Team",
+      eventName: "",
       calendar: "Other",
       color: "green"
     },
     {
-      eventName: "Teach Kids to Code",
+      eventName: "",
       calendar: "Other",
       color: "green"
     },
     {
-      eventName: "Startup Weekend",
+      eventName: "",
       calendar: "Other",
       color: "green"
     }
