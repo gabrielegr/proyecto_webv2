@@ -45,7 +45,7 @@ app.use(expressSession({
         .catch((err) => {
           debug(err);
           process.exit(1);
-        });,
+        }),
       collection: 'session',
   })
 }));
