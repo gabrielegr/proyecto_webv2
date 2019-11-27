@@ -1,130 +1,3 @@
-const User = require("../models/user.js")
-
-const insert = (req, res)=>{
-    if(!req.body.nombre || !req.body.contraseña){
-        return res.status(400).json({
-            message: "There are missing fields",
-        });
-    }
-    
-    let user = new User(
-        req.body
-    );
-
-    user.save((err, nUser)=>{
-        if(err) return res.status(500).json({
-            message: "Something happend trying to insert user",
-        });
-
-        res.status(200).json({
-            message: "Insert user was successful",
-            user: nUser
-        });
-    })
-}
-const update = (req, res)=>{
-    let user = req.body
-
-    if(!user._id){
-        return res.status(400).json({
-            message: "id is needed",
-        }); 
-    }
-
-    User.update({_id: user._id}, user)
-        .then(value =>{
-            res.status(200).json({
-                message: "update user was successful"
-            });
-        })
-        .catch((err)=>{
-            res.status(500).json({
-                message: "Something happend trying to update the user"
-            });
-        })
-
-}
-
-const deleteById = (req, res)=>{
-    let user = req.body;
-
-    if(!user._id){
-        return res.status(400).json({
-            message: "id is needed",
-        }); 
-    }
-
-    User.deleteOne({_id:user._id})
-        .then(deleted=>{
-            res.status(200).json({
-                message: "delete user was successful"
-            });
-        })
-        .catch(err=>{
-            res.status(500).json({
-                message: "Something happend trying to delete the user"
-            });
-        })
-}
-
-/**
- * METHOD = GET
- */
-const getAll = (req, res)=>{
-        User.find((err, users)=>{
-        if(err) return res.status(500).json({
-            message: "Something happend trying to get the user",
-        });
-
-        if(users){
-            res.status(200).json(users);
-        }else{
-            res.status(404).json({
-                message: "There aren't any users",
-            });
-        }
-    });
-}
-
-/**
- * METHOD = GET
- * Params -> id
- */
-const getOneById = (req, res)=>{
-    let id = req.params.id; 
-
-    User.findById(id, (err, user)=>{
-        if(err) return res.status(500).json({
-            message: "Something went wrong trying to get all users",
-        });
-
-        if(user){
-            res.status(200).json(user);
-        }else{
-            res.status(404).json({
-                message: `There isn't any user with id ${id}`,
-            });
-        }
-    });  
-}
-
-const panic = (req, res)=>{
-    User.deleteMany({}, (err)=>{
-        res.status(200).send("Quizas un cuento te animara. Se llama el codigo feo. Habia una vez un codigo tan feo que todos se murieron. FIN");
-    });
-}
-
-module.exports = {
-    insert,
-    update,
-    deleteById,
-    getAll,
-    getOneById,
-    panic,
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 var User = require('../models/user');
 var debug = require('debug')('proyectowebv2:user_controller');
 
@@ -132,8 +5,8 @@ var debug = require('debug')('proyectowebv2:user_controller');
 module.exports.getOne = (req, res, next) => {
     debug("Search User", req.params);
     User.findOne({
-            name: req.params.name
-        }, "-password")
+            email: req.params.email
+        }, "-contraseña")
         .then((foundUser) => {
             debug("Found User", foundUser);
             if (foundUser)
@@ -160,7 +33,7 @@ module.exports.getAll = (req, res, next) => {
         sort
     });
 
-    User.find({}, "-password")
+    User.find({}, "-contraseña")
         .limit(perPage)
         .skip(perPage * page)
         .sort({
@@ -182,28 +55,27 @@ module.exports.register = (req, res, next) => {
         body: req.body
     });
     User.findOne({
-            name: req.body.name
-        }, "-password")
+            email: req.body.email
+        }, "-contraseña")
         .then((foundUser) => {
             if (foundUser) {
                 debug("Usuario duplicado");
-                throw new Error(`Usuario duplicado ${req.body.name}`);
+                throw new Error(`Usuario duplicado ${req.body.nombre}`);
             } else {
                 let newUser = new User({
-                    name: req.body.name,
-                    first_name: req.body.firts_name || "",
-                    last_name: req.body.last_name || "",
+                    nombre: req.body.nombre,
                     email: req.body.email,
-                    password: req.body.password /*TODO: Modificar, hacer hash del password*/
+                    contraseña: newUser.generateHash(req.body.contraseña), 
+                    tipo:req.body.tipo
                 });
                 return newUser.save();
             }
         }).then(user => {
             return res
-                .header('Location', '/users/' + user.name)
+                .header('Location', '/users/' + user.nombre)
                 .status(201)
                 .json({
-                    name: user.name
+                    nombre: user.nombre
                 });
         }).catch(err => {
             next(err);
@@ -215,7 +87,7 @@ module.exports.register = (req, res, next) => {
 
 module.exports.update = (req, res, next) => {
     debug("Update user", {
-        name: req.params.name,
+        email: req.params.email,
         ...req.body
     });
 
@@ -224,7 +96,7 @@ module.exports.update = (req, res, next) => {
     };
 
     User.findOneAndUpdate({
-            name: req.params.name
+            email: req.params.email
         }, update, {
             new: true
         })
@@ -241,10 +113,10 @@ module.exports.update = (req, res, next) => {
 module.exports.delete = (req, res, next) => {
 
     debug("Delete user", {
-        name: req.params.name,
+        nombre: req.params.nombre,
     });
 
-    User.findOneAndDelete({name: req.params.name})
+    User.findOneAndDelete({email: req.params.email})
     .then((data) =>{
         if (data) res.status(200).json(data);
         else res.status(404).send();

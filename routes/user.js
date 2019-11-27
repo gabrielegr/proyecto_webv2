@@ -4,12 +4,12 @@ const UserController = require("../controllers/user_controller.js");
 
 
 router.get('/all', UserController.getAll);
-router.get('/:name', UserController.getOneById);
+router.get('/:nombre', UserController.getOne);
 
-router.post('/', UserController.insert);
+router.post('/', UserController.register);
 
-router.put('/:name', UserController.update);
+router.put('/:nombre', UserController.update);
 
-router.delete('/:name', UserController.deleteById);
+router.delete('/:nombre', UserController.delete);
 
 module.exports = router;

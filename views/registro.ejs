@@ -51,24 +51,29 @@
 				<h2>Cree un usuario</h2>
 				<div class="w3layouts">
 					<div class="photos-upload-view">
+							<% if (message.length > 0) { %>
+								<div class="alert alert-danger">
+								  <%= message %>
+								</div>
+							  <% } %>
 						<form action="#" method="POST">
 							<div class="agileinfo">
 								<div class="agileinfo-row">
 									<div class="ferry ferry-from">
 										<label>Nombre</label>
-										<input type="text" name="Name" id="name_field" placeholder="" required="">
+										<input type="text" name="Name" id="name_field" placeholder="nombre" required="">
 									</div>
 									<div class="ferry ferry-from">
 										<label>Correo</label>
-										<input type="email" name="email" id="mail_field" placeholder="" required="">
+										<input type="email" name="email" id="mail_field" placeholder="email" required="">
 									</div>
 									<div class="ferry ferry-from">
 										<label>Contraseña</label>
-										<input type="password" name="contra" id="pass_field" placeholder="" required="">
+										<input type="password" name="contra" id="pass_field" placeholder="contraseña" required="">
 									</div>
 									<div class="ferry ferry-from">
 										<label>Confirme su contraseña</label>
-										<input type="password" name="contra" id="checkpass_field" placeholder=""
+										<input type="password" name="contra" id="checkpass_field" placeholder="contraseña :3"
 											required="">
 									</div>
 									<div class="wthreesubmitaits">
