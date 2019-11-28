@@ -16,6 +16,7 @@ var flash = require("connect-flash");
 var bodyParser = require("body-parser");
 var app = express();
 
+app.use("/public", express.static(path.join(__dirname, "public")));
 mongoose
   .connect(process.env.MONGO_URI, {
     useCreateIndex: true,
@@ -31,6 +32,7 @@ mongoose
   });
 var db = mongoose.connection;
 
+//static files
 
 
 // view engine setup
@@ -45,6 +47,9 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(cookie(process.env.SECRET))
 app.use(flash());
 app.use("/", indexRouter);
+app.use("/", userRouter);
+app.use("/", reserveRouter);
+app.use("/", superviseRouter);
 app.use(session({
     store: new MongoStore({
       mongooseConnection: db,
@@ -52,14 +57,13 @@ app.use(session({
     }
     ),
     resave: true,
-    secret: process.env.SECRET,
+    secret: "uwu",
     proxy: true,
     resave: true,
     saveUninitialized: true
   })
 );
-//static files
-app.use("/public", express.static(path.join(__dirname, "public")));
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

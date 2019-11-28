@@ -1,7 +1,5 @@
 const mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
-
-var LaboSchema = Schema({
+LaboSchema = new mongoose.Schema({
     Numero: {
         type: Number,
         required: true,

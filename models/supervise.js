@@ -1,7 +1,5 @@
 const mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
-
-var SuperviseSchema = Schema({
+SuperviseSchema = new mongoose.Schema({
     usuario:{
         type: String,
         required: true,
