@@ -15,6 +15,7 @@ var morgan = require("morgan");
 var flash = require("connect-flash");
 var bodyParser = require("body-parser");
 var app = express();
+
 mongoose
   .connect(process.env.MONGO_URI, {
     useCreateIndex: true,
@@ -30,6 +31,28 @@ mongoose
   });
 var db = mongoose.connection;
 
+
+
+// view engine setup
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+
+app.use(logger("dev"));
+app.use(morgan("dev"));
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookie());
+app.use(express.static(path.join(__dirname, "public")));
+app.use(express.cookieParser('secret'));
+app.use(express.cookieSession({
+  key: "mysite.sid.uid.whatever",
+  secret: process.env["SECRET"],
+  cookie: {
+    maxAge: 2678400000 // 31 days
+  },
+}));
+app.use(flash());
+app.use("/", indexRouter);
 app.use(
   session({
     store: new MongoStore({
@@ -43,21 +66,6 @@ app.use(
     })
   })
 );
-
-// view engine setup
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
-
-app.use(logger("dev"));
-app.use(morgan("dev"));
-app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookie());
-app.use(express.static(path.join(__dirname, "public")));
-
-app.use(flash());
-app.use("/", indexRouter);
-
 //static files
 app.use("/public", express.static(path.join(__dirname, "public")));
 // catch 404 and forward to error handler
