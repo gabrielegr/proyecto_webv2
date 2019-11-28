@@ -52,7 +52,7 @@ app.use(session({
     }
     ),
     resave: true,
-    secret: process.env.SECRET,
+    secret: "uwu",
     proxy: true,
     resave: true,
     saveUninitialized: true
