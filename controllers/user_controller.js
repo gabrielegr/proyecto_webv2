@@ -1,6 +1,9 @@
+var express = require('express');
 var User = require('../models/user');
+var mongoose=require("mongoose")
 var debug = require('debug')('proyectowebv2:user_controller');
 const bcrypt = require('bcrypt');
+var router=express.Router()
 
 // Search a one user y database
 
