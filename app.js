@@ -41,29 +41,21 @@ app.use(logger("dev"));
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookie());
 app.use(express.static(path.join(__dirname, "public")));
-app.use(express.cookieParser('secret'));
-app.use(express.cookieSession({
-  key: "mysite.sid.uid.whatever",
-  secret: process.env["SECRET"],
-  cookie: {
-    maxAge: 2678400000 // 31 days
-  },
-}));
+app.use(cookie(process.env.SECRET))
 app.use(flash());
 app.use("/", indexRouter);
-app.use(
-  session({
+app.use(session({
     store: new MongoStore({
       mongooseConnection: db,
-      collection: "session",
-      resave: true,
-      secret: "uwu",
-      proxy: true,
-      resave: true,
-      saveUninitialized: true
-    })
+    }
+    ),
+    collection: "session",
+    resave: true,
+    secret: process.env.SECRET,
+    proxy: true,
+    resave: true,
+    saveUninitialized: true
   })
 );
 //static files
