@@ -14,12 +14,29 @@ var reserveRouter = require('./routes/reserve');
 var morgan=require('morgan');
 var flash=require('connect-flash');
 var bodyParser=require('body-parser');
-var options = {};
-
-
-
-
 var app = express();
+mongoose.connect(process.env.MONGO_URI, {
+  useCreateIndex: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true 
+  })
+  .then(() => {
+    debug("success Connected to database")
+  })
+  .catch((err) => {
+    debug(err);
+    process.exit(1);
+  })
+  var db = mongoose.connection;
+
+  app.use(session({
+    store: new MongoStore({
+        mongooseConnection: db,
+        collection: 'session',
+    })
+  }));
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -32,23 +49,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookie());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(session({
-  store: new MongoStore({
-      mongooseConnection: mongoose.connect(process.env.MONGO_URI, {
-        useCreateIndex: true,
-        useNewUrlParser: true,
-        useUnifiedTopology: true 
-        })
-        .then(() => {
-          debug("success Connected to database")
-        })
-        .catch((err) => {
-          debug(err);
-          process.exit(1);
-        }),
-      collection: 'session',
-  })
-}));
+
 app.use(flash())
 app.use('/', indexRouter);
 
