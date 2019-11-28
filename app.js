@@ -47,6 +47,9 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(cookie(process.env.SECRET))
 app.use(flash());
 app.use("/", indexRouter);
+app.use("/", userRouter);
+app.use("/", reserveRouter);
+app.use("/", superviseRouter);
 app.use(session({
     store: new MongoStore({
       mongooseConnection: db,

@@ -1,5 +1,8 @@
+var express = require('express');
 var User = require('../models/user');
+var mongoose=require("mongoose")
 var debug = require('debug')('proyectowebv2:user_controller');
+var router=express.Router()
 
 // Search a one user y database
 module.exports.getOne = (req, res, next) => {
@@ -46,9 +49,9 @@ module.exports.getAll = (req, res, next) => {
             next(err);
         });
 
-}
-
-// New User
+    }
+    
+    // New User
 
 module.exports.register = (req, res, next) => {
     debug("New User", {
