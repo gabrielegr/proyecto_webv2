@@ -1,12 +1,14 @@
 var User = require('../models/user');
 var debug = require('debug')('proyectowebv2:user_controller');
+const bcrypt = require('bcrypt');
 
 // Search a one user y database
+
 module.exports.getOne = (req, res, next) => {
     debug("Search User", req.params);
     User.findOne({
-            email: req.params.email
-        }, "-contraseña")
+        email: req.params.email
+    }, "-password")
         .then((foundUser) => {
             debug("Found User", foundUser);
             if (foundUser)
@@ -33,19 +35,17 @@ module.exports.getAll = (req, res, next) => {
         sort
     });
 
-    User.find({}, "-contraseña")
+    User.find({}, "-password")
         .limit(perPage)
         .skip(perPage * page)
         .sort({
             [sortProperty]: sort
         })
         .then((users) => {
-            debug("Found users", users);
             return res.status(200).json(users)
         }).catch(err => {
             next(err);
         });
-
 }
 
 // New User
@@ -55,24 +55,24 @@ module.exports.register = (req, res, next) => {
         body: req.body
     });
     User.findOne({
-            email: req.body.email
-        }, "-contraseña")
+        email: req.body.email
+    }, "-password")
         .then((foundUser) => {
             if (foundUser) {
                 debug("Usuario duplicado");
                 throw new Error(`Usuario duplicado ${req.body.nombre}`);
             } else {
                 let newUser = new User({
-                    nombre: req.body.nombre,
                     email: req.body.email,
-                    contraseña: newUser.generateHash(req.body.contraseña), 
-                    tipo:req.body.tipo
+                    nombre: req.body.nombre,
+                    password: bcrypt.hashSync(req.body.contraseña, 10),
+                    tipo: req.body.tipo
                 });
                 return newUser.save();
             }
         }).then(user => {
             return res
-                .header('Location', '/users/' + user.nombre)
+                .header('Location', '/users/' + user._id)
                 .status(201)
                 .json({
                     nombre: user.nombre
@@ -81,7 +81,6 @@ module.exports.register = (req, res, next) => {
             next(err);
         });
 }
-
 
 // Update user 
 
@@ -96,10 +95,10 @@ module.exports.update = (req, res, next) => {
     };
 
     User.findOneAndUpdate({
-            email: req.params.email
-        }, update, {
-            new: true
-        })
+        email: req.params.email
+    }, update, {
+        new: true
+    })
         .then((updated) => {
             if (updated)
                 return res.status(200).json(updated);
@@ -116,11 +115,11 @@ module.exports.delete = (req, res, next) => {
         nombre: req.params.nombre,
     });
 
-    User.findOneAndDelete({email: req.params.email})
-    .then((data) =>{
-        if (data) res.status(200).json(data);
-        else res.status(404).send();
-    }).catch( err => {
-        next(err);
-    })
+    User.findOneAndDelete({ email: req.params.email })
+        .then((data) => {
+            if (data) res.status(200).json(data);
+            else res.status(404).send();
+        }).catch(err => {
+            next(err);
+        })
 }
