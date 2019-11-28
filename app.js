@@ -16,6 +16,7 @@ var flash = require("connect-flash");
 var bodyParser = require("body-parser");
 var app = express();
 
+app.use("/public", express.static(path.join(__dirname, "public")));
 mongoose
   .connect(process.env.MONGO_URI, {
     useCreateIndex: true,
@@ -32,7 +33,7 @@ mongoose
 var db = mongoose.connection;
 
 //static files
-app.use("/public", express.static(path.join(__dirname, "public")));
+
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
