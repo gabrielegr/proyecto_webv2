@@ -1,6 +1,3 @@
-
- 
-    
     #calendar {
       -webkit-transform: translate3d(0, 0, 0);
       -moz-transform: translate3d(0, 0, 0);
@@ -8,6 +5,8 @@
       width: 420px;
       margin: 0 auto;
       height: 570px;
+      background: black;
+      opacity:0.8;
       overflow: hidden;
     }
     
@@ -101,7 +100,7 @@
     }
     
     .day.other {
-     color: rgba(0, 0, 0, 0.1);
+     color:rgb(241, 206, 90);
     }
     
     .day.today {
