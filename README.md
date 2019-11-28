@@ -1,22 +1,22 @@
-#H1 Reserva de laboratorio 
+#Reserva Laboratorio
 ---
 
 Como sabran los laboratorios pueden llegar a ser un problema ya para estudiantes, instructores y docentes, una manera mas optima para resolver esta problematica es haciendo una API para gestionar el manejo y el uso de los laboratorios que podemos tener una vision de como estan siendo utilizados, gestionarlos y haciendo reserva
 de estos de manera dinamica y sencilla. 
 ---
-#H2 Conceptos 
+#Conceptos
 
 * APIs
 ¿qué son, cómo funcionan?
 Las Interfaces de Programacion de Aplicaciones (APIs por sus siglas en inglés) son construcciones disponibles en los lenguajes de programación que permiten a los desarrolladores crear funcionalidades complejas de una manera simple. Las APIs de navegador están integradas en tu navegador web y pueden exponer datos del navegador y del entorno informático circundante y hacer cosas complejas y útiles con él. 
 
 ---
-#H2 Objetivo 
+#Objetivos
 
 Facilitar el uso de los laboratorios para que el uso de estos sea mas ordenado y facil para los estudiantes y docentes que quieran utilizarlo tambien mantenerse informado que si estan siendo ocupados o esten libres.
 
 ---
-#H2 Como funciona
+#Como Funciona
 
 * Pagina Principal 
 
