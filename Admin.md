@@ -1,22 +1,22 @@
-# Reserva Laboratorio
+# Reserva de laboratorio 
 ---
 
 Como sabran los laboratorios pueden llegar a ser un problema ya para estudiantes, instructores y docentes, una manera mas optima para resolver esta problematica es haciendo una API para gestionar el manejo y el uso de los laboratorios que podemos tener una vision de como estan siendo utilizados, gestionarlos y haciendo reserva
 de estos de manera dinamica y sencilla. 
 ---
-## Conceptos
+## Conceptos 
 
 * APIs
 ¿qué son, cómo funcionan?
 Las Interfaces de Programacion de Aplicaciones (APIs por sus siglas en inglés) son construcciones disponibles en los lenguajes de programación que permiten a los desarrolladores crear funcionalidades complejas de una manera simple. Las APIs de navegador están integradas en tu navegador web y pueden exponer datos del navegador y del entorno informático circundante y hacer cosas complejas y útiles con él. 
 
 ---
-## Objetivos
+## Objetivo 
 
 Facilitar el uso de los laboratorios para que el uso de estos sea mas ordenado y facil para los estudiantes y docentes que quieran utilizarlo tambien mantenerse informado que si estan siendo ocupados o esten libres.
 
 ---
-## Como Funciona
+## Como funciona
 
 * Pagina Principal 
 
@@ -29,3 +29,12 @@ Cuando le des click en registrar te mandara a otra pagina que te saldra para que
 * Reserva
 
 Cuando hallas ingresado y tu sesion este abierta, para reservar vas tener que seleccionar el mes, el dia y el año para hacer la reserva, como anticipacion sabras si este esta disponible y asi luego realizes la solicitud del laboratorio, la solicitud sere enviada al administrador para verificar y este te notificara si es aceptada la solicitud, si este es aceptada te sera agreada en el calendario como un evento en ese dia. 
+
+* Modo Administrador 
+
+EN este modo de usuario podras ver, modificar y administrar los laboratorios que estos tienen el derecho y proridad de los alumnos y instructores, este modo lo pueden obtener solamente los catedraticos y este caso el super Administrador de los labos que este gestiona las solicitudes y verifica que los labos sean ocupados de manera correcta o no interfiera con otro evento.
+
+para entrar a este su usuario es: admin, su contraseña: godmode 
+
+con este tendras los privilegios que este tiene el usuario.
+
