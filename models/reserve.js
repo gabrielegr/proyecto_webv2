@@ -1,7 +1,5 @@
 const mongoose = require('mongoose'),
-    Schema = new mongoose.Schema;
-
-var ReserveSchema = Schema({
+ReserveSchema = new mongoose.Schema({
     laboratorio: {
         type: String,
         required: true,
