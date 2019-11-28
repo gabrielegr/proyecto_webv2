@@ -48,9 +48,9 @@ app.use("/", indexRouter);
 app.use(session({
     store: new MongoStore({
       mongooseConnection: db,
+      collection: "session",
     }
     ),
-    collection: "session",
     resave: true,
     secret: process.env.SECRET,
     proxy: true,
